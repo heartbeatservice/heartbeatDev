@@ -1,0 +1,71 @@
+﻿@model HBS.WebPortal.Models.User
+
+@{
+    ViewBag.Title = "Done In A Heartbeat";
+}
+<div class="row" >
+    <div class="col-md-12"></div>
+
+</div>
+<div class="row"  >
+ 
+       
+    
+    <div class="col-md-9">
+          <div class="panel panel-info panel-default">
+              <div class="panel-heading panelBg"><h4 style="color:white;">Done in a Heartbeat.</h4></div>
+               <div class="panel-body ">
+                   <div class=" lead">      Here at Heartbeat we love to help anyone that has an I.T need for their business. 
+            We develop software that target the basic business needs like websites, mobile apps, time tracking ,
+             scheduling and workflow systems. </div>
+                   <div class="thumbnail">
+        <img src="~/Content/images/pro.jpg"  class=" img-responsive"/>
+           <div class="caption"><div class="well"> 
+                                    <p class="lead">
+             
+                                        <em>The fact is everything in the world of IT has transformed in the last couple of years. 
+                                            The Web and Mobile markets have expanded and now there is a huge mobile/web market that can transform your business.
+                                            No business should be left behind! It is so easy to get set up and all businesses should take advantage. The most important 
+                                            thing is knowing what to do and how to do it efficiently and effectively. As Bill Gates once said:
+                                        </em></p>
+                <p style="text-align:center">
+                                    
+                                        <em>"The first rule of any technology used in a business is that automation applied to an efficient operation will magnify the efficiency. 
+                                            The second is that automation applied to an inefficient operation will magnify the inefficiency."
+                                        </em></p>  
+           </div>
+            </div>
+           
+                   
+               </div>
+            </div>
+              </div>
+    </div>
+   
+      
+
+        <div class="col-md-3"  >
+        <div class="panel panel-info panel-primary">
+            <div class="panel-heading panelBg">
+                @if (ViewBag.error != null)
+                {
+                   <h5 class="text-warning"> @ViewBag.error</h5>
+                }
+                <h4 style="color:white;">Customer Login</h4></div>
+               <div class="panel-body ">
+                   <div class="form-group">
+    @using (Html.BeginForm())
+    {
+        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="UserName" />
+        <label for="pass">Password</label><input class="form-control" type="password"  id="pass" name="Password"/><br />
+        <input type="submit" class="btn btn-large btn-default"  value="Login" />
+    }
+                       </div>
+            </div>
+            
+           
+                   
+               </div>
+            
+              </div>
+    </div>

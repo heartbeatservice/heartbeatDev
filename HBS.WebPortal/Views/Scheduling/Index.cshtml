@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div ng-controller="SchedulingController">
+<div class="row" >
+
+    <div id="dashboard" class="col-md-12">
+
+        <div class="panel panel-info panel-primary">
+            <div class="panel-heading panelBg">Dashboard</div>
+            <div class="panel-body">
+                <ul ng-repeat="appointment in ProviderDashboard">
+                    <li>Dr. {{appointment.doctor}} has {{appointment.patients}} patients to be seen today.</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="row">
+
+      <div id="reminders" class="col-md-12">
+
+        <div class="panel panel-info panel-primary">
+            <div class="panel-heading panelBg">Reminders</div>
+            <div class="panel-body">
+                  <ul ng-repeat="reminder in ReminderDashboard">
+                    <li>{{reminder}}</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </div>

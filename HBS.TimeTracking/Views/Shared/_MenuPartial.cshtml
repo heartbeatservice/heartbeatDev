@@ -1,0 +1,8 @@
+﻿@model List<HBS.Data.Entities.TimeTracking.Models.WebMenuRole>
+
+<ul id="menu">
+    @foreach (var webmenu in Model)
+    {
+        <li>@Html.ActionLink(webmenu.MenuTitle, webmenu.Action, webmenu.Controller)</li>
+    }
+</ul>

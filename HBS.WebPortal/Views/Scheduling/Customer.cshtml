@@ -1,0 +1,405 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+}
+
+<div ng-controller="CustomerController" ng-init="init()">
+
+
+    <div id="dashboard">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading panelBg ">Customer Panel</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <a href="#frmAdd" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Add New Customer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <div class="form-group has-warning">
+                            <input class="form-control " ng-model="SearchParam" placeholder="Search By First Name, Last Name or Date Of Birth" />
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                            <button class="btn btn-warning" ng-click="CustomerSearch();"><span class="glyphicon glyphicon-search "></span></button>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 gridStyle" id="CustomerGrid" ng-grid="GridOptions"></div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="modal fade " tabindex="-1" id="frmAdd">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Add Customer</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="user" ng-model="Customer.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                <input id="FirstName" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2 has-warning"> <input id="MiddleInitial" type="text" value="" ng-model="Customer.MiddleInitial" class="form-control" placeholder="MI" /> </div>
+
+
+                        <div class="form-group col-md-5 has-warning"> <input id="LastName" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name" /> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning"> <input id="address1" type="text" value="" ng-model="Customer.Address1" class="form-control" placeholder="Address 1" /> </div>
+                        <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2" /> </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning"> <input id="city" type="text" value="" ng-model="Customer.City" class="form-control" placeholder="City" /> </div>
+                        <div class="form-group col-md-2 has-warning"> <input id="State" type="text" value="" ng-model="Customer.State" class="form-control" placeholder="State" /> </div>
+                        <div class="form-group col-md-5 has-warning"> <input id="Zip" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip" /> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 has-warning"> <input id="DateOfBirth" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth" /> </div>
+                        <div class="form-group col-md-8 has-warning"> <input id="Email" type="text" value="" ng-model="Customer.Email" class="form-control" placeholder="Email" /> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning"> <input id="HomePhone" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone" /> </div>
+                        <div class="form-group col-md-6 has-warning"> <input id="CellPhone" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone" /> </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="AddCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                        <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--Edit-->
+
+    <a href="#frmEdit" id="editbtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+
+    <div class="modal fade " tabindex="-1" id="frmEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">View/Edit</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="UserIdEdit" ng-model="Customer.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="companyEdit" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                <input id="FirstNameEdit" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2 has-warning"> <input id="MiddleInitialEdit" type="text" value="" ng-model="Customer.MiddleInitial" class="form-control" placeholder="MI" /> </div>
+
+
+                        <div class="form-group col-md-5 has-warning"> <input id="LastNameEdit" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name" /> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning"> <input id="address1Edit" type="text" value="" ng-model="Customer.Address1" class="form-control" placeholder="Address 1" /> </div>
+                        <div class="form-group col-md-6 has-warning "> <input id="Address2Edit" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2" /> </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning"> <input id="cityEdit" type="text" value="" ng-model="Customer.City" class="form-control" placeholder="City" /> </div>
+                        <div class="form-group col-md-2 has-warning"> <input id="StateEdit" type="text" value="" ng-model="Customer.State" class="form-control" placeholder="State" /> </div>
+                        <div class="form-group col-md-5 has-warning"> <input id="ZipEdit" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip" /> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 has-warning"> <input id="DateOfBirthEdit" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth" /> </div>
+                        <div class="form-group col-md-8 has-warning"> <input id="EmailEdit" type="text" value="" ng-model="Customer.Email" class="form-control" placeholder="Email" /> </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning"> <input id="HomePhoneEdit" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone" /> </div>
+                        <div class="form-group col-md-6 has-warning"> <input id="CellPhoneEdit" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone" /> </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="UpdateCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                        <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <a href="#frmInsurance" id="Insurancebtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+
+    <div class="modal fade " tabindex="-1" id="frmInsurance">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" id="insuranceClose" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Insurance</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12 ">
+                            <div id="accordian" class="panel-group">
+                                <div ng-repeat="i in Insurance" class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <div class="panel-title"><a href="#{{$index}}" data-toggle="collapse" data-parent="#accordian">{{i.InsuranceName}}</a></div>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="{{$index}}">
+                                        <div class="panel-body">
+                                            <div class="well">
+                                                <span>Effective Date:{{i.EffectiveDate}}</span><br />
+                                                <span>End Date:{{i.EndDate}}</span><br />
+                                                <span>Insurance Type:{{i.InsuranceType}}</span><br />
+                                                <span>Active:{{i.IsActive}}</span><br />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group  col-md-8">
+                            <button class="btn btn-warning" class="form-control" ng-click="ShowInsuranceForm();"><span class="glyphicon glyphicon-user"></span> Add Insurance</button>
+                            <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                            <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+    <!-- Add Customer Insurance -->
+    <a href="#frmAddInsurance" id="AddInsurancebtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+
+    <div class="modal fade " tabindex="-1" id="frmAddInsurance">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Add Insurance</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="UserIdInsurance" ng-model="Customer.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="companyInsurance" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                <label class="">First Name:{{Customer.FirstName}}</label>
+                                <input type="hidden" id="CustomerIdForInsurance" value="{{Customer.CustomerId}}" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <label id="LastNameInsurance" class="">Last Name:{{Customer.LastName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <label class="">Date Of Birth:{{Customer.DateOfBirth}}</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <select id="InsuranceId" class="form-control">
+                                    <option ng-repeat="i in AllInsurances" value="{{i.InsuranceId}}">{{i.InsuranceName}}</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+                                <input id="InsuranceType" type="text" value="" ng-model="InsuranceEntry.InsuranceType" class="form-control" placeholder="Insurance Type" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <input id="EffectiveDate" type="text" value="" ng-model="InsuranceEntry.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <input id="EndDate" type="text" value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EffectiveDate" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <input id="PCPName" type="text" value="" ng-model="InsuranceEntry.PCPName" class="form-control" placeholder="PCP Name" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 has-warning">
+                            <div class="input-group">
+
+                                <input id="InsuranceNumber" type="text" value="" ng-model="InsuranceEntry.CustomerInsuranceNumber" class="form-control" placeholder="Member ID" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group  col-md-8">
+                            <button class="btn btn-warning" class="form-control" ng-click="AddCustomerInsurance();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                            <a href="#" id="dismissAddInsurance" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                            <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <!-- End Add Customer Insurance -->
+    <!--Add Last Form For Scheduling an Appointment-->
+
+    <a href="#frmAddAppointment" id="AddAppointmentbtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+
+    <div class="modal fade " tabindex="-1" id="frmAddAppointment">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Appointment for {{Customer.FirstName+' '+Customer.LastName}}</h4>
+
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="@Url.Action("Daily", "Scheduling")" id="frmschedule" method="get">
+                        <span id="aptmsg"></span>
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <div class="input-group">
+                                    <select ng-model="myProviders" ng-options="doctor.FirstName+' '+doctor.LastName for doctor in AllProviders" ng-change="AddAppointment();"><option value="">---Select Doctor---</option></select>
+                                    <input name="CustomerId" type="hidden" value="{{Customer.CustomerId}}" />
+                                    <input name="ProfessionalId" type="hidden" value="{{myProviders.ProfessionalId}}" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+
+
+                    <div class="modal-footer">
+                        <div class="form-group  col-md-8">
+                            <a class="btn btn-warning" class="form-control" ng-click="ViewSchedule();">View Schedule</a>
+                            <a href="#" id="dismissAddAppointment" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- End Of Scheduling an appointment -->
+
+    </div>
+    <!-- End Of Controller -->
+</div>

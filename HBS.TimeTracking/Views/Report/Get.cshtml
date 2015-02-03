@@ -1,0 +1,50 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.UserList
+@Scripts.Render("~/bundles/timetrack")
+@{
+    ViewBag.Title = "User Timesheet Report";
+}
+@*<div style="font-weight: bold; font-size: 22px; color: #000;">
+    Report
+</div>*@
+@using (Ajax.BeginForm("GetUserHistory", "Report", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "searchResult",
+        LoadingElementId = "searchprogress"
+    }))
+{
+    
+@*<div style="float: left;text-align: center;padding-right:5px;">
+        <label for="user" style="display: block">
+            User</label>
+        <input type="text" name="user" style="height:25px;" data-autocomplete="@Url.Action("UserQuickSearch", "Report")"/>
+    </div>*@
+    <div class="bigInputControls">
+        <div id="divUserList" style="float: left; text-align: center; padding-right: 5px;">
+            <label for="user" style="display: block">
+                User</label>
+            @Html.DropDownListFor(x => x.SelectedValue, Model.Users, new { id = "userList", @class = "userList" })
+        </div>
+        <div style="float: left; text-align: center; padding-right: 5px;">
+            <label for="txtStartDate" style="display: block">
+                Start Date</label>
+            <input type="text" style="height: 25px;" data-datepicker="true" name="txtStartDate" />
+        </div>
+        <div style="float: left; text-align: center; padding-right: 5px;">
+            <label for="txtEndDate" style="display: block">
+                End Date</label>
+            <input type="text" style="height: 25px;" data-datepicker="true" name="txtEndDate" />
+        </div>
+        <div style="float: left; padding-top: 15px; padding-right: 5px;">
+            <input type="submit" value="Search" style="padding: 10px; display: inline" />
+        </div>
+        <span id="searchprogress" style="display: none; float: left; padding-right: 5px;">
+            <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+        </span>
+    </div>
+    <div style="clear: both;">
+    </div>
+}
+<div id="searchResult" style="margin-top: 15px;">
+</div>

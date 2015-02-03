@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Mecham Medical Care</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jqueryforms")
+    @Scripts.Render("~/bundles/timetrack")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div>
+        <div class="content-wrapper" style="height: 100px; border: 1px solid #fff">
+            <div class="float-left">
+                <span class="site-title">@Html.ActionLink("MMC Time Tracking System", "Daily", "TimeTrack")</span>
+            </div>
+            <div class="float-right" style="margin-top: 5px; border: 1px solid #fff">
+                @Html.Partial("_LoginPartial")
+            </div>
+            <div style="margin-top: 70px; border: 1px solid #fff">
+                @Html.Action("GetMenu", "Account")
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <div class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </div>
+    </div>
+    <div>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; @DateTime.Now.Year - Mecham Medical Care</p>
+            </div>
+            <div class="float-right">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

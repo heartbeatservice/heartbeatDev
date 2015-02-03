@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+     <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css" />
+<link href="~/Content/bootstrap/bootstrap-flatly-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Angular/ng-grid.min.css" rel="stylesheet" />
+
+    <link href="~/Content/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.mobile.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
+      
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
+    <link href="~/Content/Board.css" rel="stylesheet" />
+    <script src="~/Content/scripts/jquery-1.8.2.min.js"></script>
+
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Content/scripts/bootstrap.min.js"></script>
+    <script src="~/Content/Angular/angular.min.js"></script>
+    <script src="~/Content/Angular/ng-grid-2.0.6.min.js"></script>
+    <script src="~/Content/Angular/app.js">
+    </script>
+    <script src="~/Content/Angular/HeartbeatService.js"></script>
+    <script src="~/Content/Angular/HeartbeatController.js"></script>
+    <script src="~/Content/Angular/SchedulingController.js"></script>
+    <script src="~/Content/Angular/CustomerController.js"></script>
+
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+    <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Content/scripts/script.js"></script>
+ 
+    <script src="~/Content/Angular/ProfessionalController.js"></script>
+    <script src="~/Content/Angular/InsuranceController.js"></script>
+    <script src="~/content/Angular/emailController.js"></script>
+    
+</head>
+<body ng-app="HeartbeatApp">
+    <div id="mainContent" class="container" >
+        <div id='controls' class='navbar navbar-default navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
+            <div class="col-md-9">
+            <div id="logo" class="navbar-header">
+                <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
+                <div class="logoText hidden-xs">
+
+                   <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
+                    <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
+</div>
+
+                <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="glyphicon glyphicon-chevron-down "></span>
+
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse navbar-left">
+
+                <ul id="menu" class="nav navbar-nav  "></ul>
+
+                @{if (Session["app"]!=null){
+                <input type="hidden" id="app" value=@Session["app"].ToString()>
+                }
+                  else { 
+                <input type="hidden" id="app" value='Website'>
+                }
+                }
+            </div>
+</div>
+            @{if (Session["user"]!=null)
+              {
+                  
+            <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;" ><label class="dropText" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
+               
+               <a href=" @(Url.Action("Logout","Home"))" class="btn-small dropText"><span class='glyphicon glyphicon-off '></span></a>
+            </div>
+            }
+            }
+        </div>
+    @RenderBody()
+
+</div>
+ 
+</body>
+@RenderSection("scripts", required: false)
+</html>
+   

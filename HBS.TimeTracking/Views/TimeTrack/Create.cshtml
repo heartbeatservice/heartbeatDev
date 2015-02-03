@@ -1,0 +1,64 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.UserTimeTrackHistoryMapped
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/timetrack")
+}
+@{
+    ViewBag.Title = "Create";
+}
+<h2>
+    Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset class="bigInputControls">
+        <legend>UserTimeTrackHistory</legend>
+        <div id="timeUser">
+            <div class="editor-label">
+                @Html.Label("User")
+            </div>
+            <div>
+                @*<input type="text" name="user" style="height:25px;" value="@Model.UserName" data-autocomplete="@Url.Action("UserQuickSearch", "Report")"/>*@
+                @Html.DropDownListFor(x => x.UserName, Model.Users, new { id = "userList", @class = "userList" })
+            </div>
+        </div>
+        <div id="clockInTime" style="margin-top:10px;">
+            <div class="editor-label">
+                @Html.Label("Clock In Time")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(x => x.ClockInTime, Model.ClockInTimeList, new { id = "userList", @class = "userList" })
+                @*@Html.EditorFor(model => model.ClockInTime) (ex. 18:30 (06:30 PM), 15:20 (03:20 PM), 09:15 (09:15 AM))*@
+                @Html.ValidationMessageFor(model => model.ClockInTime)
+            </div>
+        </div>
+        <div id="clockOutTime" style="margin-top:10px;">
+            <div class="editor-label">
+                @Html.Label("Clock Out Time")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(x => x.ClockOutTime, Model.ClockOutTimeList, new { id = "userList", @class = "userList" })
+                @*@Html.EditorFor(model => model.ClockOutTime) (ex. 18:30 (06:30 PM), 15:20 (03:20 PM), 09:15 (09:15 AM))*@
+                @Html.ValidationMessageFor(model => model.ClockOutTime)
+            </div>
+        </div>
+        <div id="createDate" style="margin-top:10px;">
+            <div class="editor-label">
+                @Html.Label("Date")
+            </div>
+            <div>
+                @Html.EditorFor(model => model.StampDate)
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+        <p>
+            <span style="color: red;">@Html.Raw(@ViewBag.Message)</span>
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to Edit User Time", "Edit", "TimeTrack")
+</div>

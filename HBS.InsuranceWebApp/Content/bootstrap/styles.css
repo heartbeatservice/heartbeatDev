@@ -1,0 +1,77 @@
+﻿body
+{
+    margin-top:180px;
+}
+
+.pass {
+    color:green;
+}
+
+.fail {
+    color:red;
+}
+
+.carimages {
+
+    
+}
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    min-width: 90%;
+    min-height: 650px;
+    color:black;
+    
+   
+}
+.panel-background {
+background-color:rgb(64, 83, 103);
+}
+
+.panel-custom {
+    height:650px;
+}
+
+.indicator-background {
+background-color:rgb(9, 8, 109)
+}
+
+.logoText {
+padding-left:10px;
+padding-right:10px;
+}
+
+.navBg {
+background-color:rgb(0,0,0) !important;
+}
+
+.panelBg {
+background-color:green !important;
+
+}
+
+.logoColor {
+color:#f23a38;
+}
+
+.loginpadding {
+margin-left:200px;
+margin-top:20px;
+}
+
+.dropdown:hover *{
+    background-color:orange !important;
+    color:green !important;
+}
+
+.navbar-item:hover *{
+    background-color:orange !important;
+    color:green !important;
+}
+
+.subitem {
+background-color:white;
+}
+.subitem:hover *{
+    background-color:green!important;
+    color:white !important;
+}

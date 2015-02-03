@@ -1,0 +1,84 @@
+﻿@model HBS.Data.Entities.TimeTracking.ViewModels.WeeklyTimeTrackWeekListViewModel
+@Scripts.Render("~/bundles/timetrack")
+<div id="resultDiv">
+    <div style="height: 60px; margin-top: 10px;">
+        <div style="float: left;">
+            <div style="font-size: 20px; font-weight: bold;">@Model.WeeklyTimeTrack.WeekStartEndDateDisplay</div>
+            <span>Total time worked in this week: <span style="font-weight: bold;">@Model.WeeklyTimeTrack.TotalTimeForTheWeekDisplay</span></span>
+        </div>
+        <div style="float: right; padding-top: 20px;">
+            @using (Html.BeginForm("WeeklyByDate", "TimeTrack", new { id = Model.UserName }, FormMethod.Post, new { name = "frmWeekList", id = "frmWeekList" }))
+            {
+                <span id="weekListProgress" style="display: none;">
+                    <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+                </span>
+                @Html.DropDownListFor(x => x.SelectedValue, Model.WeekList, new { id = "weeklist" })
+            }
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <table id="tblweeklyTimeTrack">
+        <tr>
+            <th class="bold">
+                @Html.DisplayName("Date")
+            </th>
+            <th>
+                @Html.DisplayName("Daily Track Detail")
+            </th>
+            <th class="bold">
+                @Html.DisplayName("Total Time Worked")
+            </th>
+        </tr>
+        @foreach (var dailyTimeTrack in Model.WeeklyTimeTrack.DailyTimeTracks)
+        {<tr>
+        <td class="bold" style="padding-top: 10px;">
+            @Html.Raw(dailyTimeTrack.StampDateForDisplay)
+        </td>
+        <td>
+            <table class="tblInnerTimeTrack">
+                <tr>
+                    <th>
+                        Clock In
+                    </th>
+                    <th>
+                        Clock Out
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                @foreach (var timeTrack in dailyTimeTrack.TimeTrackList)
+                {
+                    <tr data-editRow="editRow" style="vertical-align: middle;">
+                        <td>
+                            
+                            <input type="hidden" id="dailytimeTrack_TimeTrackId" name="dailyTimeTrack.TimeTrackid" value="@timeTrack.TimeTrackId" />
+                            <input type="hidden" id="dailytimeTrack_TimeTrackStampDate" name="dailyTimeTrack.TimeTrackStampDate" value="@dailyTimeTrack.StampDate" />
+                            <input type="hidden" id="dailytimeTrack_SelectedUser" name="dailyTimeTrack.SelectedUser" value="@Model.UserName" />
+                            <span id="spnClockInTime">@timeTrack.ClockInTimeDisplay</span>
+                            <input type="text" id="txtClockInTime" value="@timeTrack.ClockInTime" style="display:none;width:75px;"/>
+                        </td>
+                        <td>
+                            <span id="spnClockOutTime">@timeTrack.ClockOutTimeDisplay</span>
+                            <input type="text" id="txtClockOutTime" value="@timeTrack.ClockOutTime" style="display:none;width:75px;"/>
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a data-editHourlyRecord="editHourlyRecord" >Edit</a>
+                                <a id="updateTimeTrack" data-updateHourlyRecord="updateHourlyRecord" class="smallestButton">Update</a>
+                                <a id="cancelTimeTrack" data-cancelHourlyRecord="cancelHourlyRecord" class="smallestButton" >Cancel</a>
+                                <a id="deleteTimeTrack" data-deleteHourlyRecord="deleteHourlyRecord" class="smallestButton" >Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td class="bold" style="padding-top: 10px;">
+            @Html.DisplayFor(modelItem => dailyTimeTrack.TotalTimeForTheDayDisplay)
+        </td>
+    </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,47 @@
+﻿@model HBS.Data.Entities.TimeTracking.ViewModels.DailyTimeTrackViewModel
+
+@Scripts.Render("~/bundles/timetrack")
+
+
+<div style="font-weight: bold;font-size: 24px;">@Model.UserFullName</div>
+<div style="font-weight: bold;font-size: 18px;">@Html.Raw(Model.DailyTimeTrack.StampDateForDisplay)</div>
+<span>Total Time Worked: <span id="TotalTimespn" style="font-weight: bold;">@Model.DailyTimeTrack.TotalTimeForTheDayDisplay</span></span>
+<table id="tblweeklyTimeTrack">
+    <tr>
+        <th>
+            Clock In
+        </th>
+        <th>
+            Clock Out
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var timeTrack in Model.DailyTimeTrack.TimeTrackList)
+    {
+        <tr data-editrow="editRow" style="vertical-align: middle;">
+            <td>
+                <input type="hidden" id="dailytimeTrack_TimeTrackId" name="dailyTimeTrack.TimeTrackid" value="@timeTrack.TimeTrackId" />
+                <input type="hidden" id="dailytimeTrack_TimeTrackStampDate" name="dailyTimeTrack.TimeTrackStampDate" value="@Model.DailyTimeTrack.StampDate" />
+                <input type="hidden" id="dailytimeTrack_SelectedUser" name="dailyTimeTrack.SelectedUser" value="@Model.UserName" />
+                <span id="spnClockInTime">@timeTrack.ClockInTimeDisplay</span>
+                <input type="text" id="txtClockInTime" value="@timeTrack.ClockInTime" 
+                            style="display:none;width:75px;"/>
+            </td>
+            <td>
+                <span id="spnClockOutTime">@timeTrack.ClockOutTimeDisplay</span>
+                <input type="text" id="txtClockOutTime" value="@timeTrack.ClockOutTime" 
+                            style="display:none;width:75px;"/>
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a data-edithourlyrecord="editHourlyRecord">Edit</a>
+                    <a id="updateTimeTrack" data-updatehourlyrecord="updateHourlyRecord" class="smallestButton">Update</a>
+                    <a id="cancelTimeTrack" data-cancelhourlyrecord="cancelHourlyRecord" class="smallestButton">Cancel</a>
+                    <a id="deleteTimeTrack" data-deleteHourlyRecord="deleteHourlyRecord" class="smallestButton" >Delete</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

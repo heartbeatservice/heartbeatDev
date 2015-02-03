@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>HBS.Database.HeartbeatService</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{23c36bd6-f554-4d1b-bc76-9671948abadd}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>HBS.Database.HeartbeatService</RootNamespace>
+    <AssemblyName>HBS.Database.HeartbeatService</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Appointments.sql" />
+    <Build Include="dbo\Tables\CustomerInsurance.sql" />
+    <Build Include="dbo\Tables\Customers.sql" />
+    <Build Include="dbo\Tables\Insurances.sql" />
+    <Build Include="dbo\Tables\Professional.sql" />
+    <Build Include="dbo\Tables\ProfessionalSchedule.sql" />
+    <Build Include="dbo\Tables\ProfessionalType.sql" />
+    <Build Include="dbo\Tables\StatusType.sql" />
+    <Build Include="dbo\Tables\UserProfile.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="Security\hbuser.sql" />
+    <Build Include="Security\hbuser_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\hbuser_2.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\Menu.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\MenuRole.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\ConfigValues.sql" />
+    <Build Include="dbo\Stored Procedures\AddCompany.sql" />
+    <Build Include="dbo\Stored Procedures\AddUser.sql" />
+    <Build Include="dbo\Stored Procedures\GetCompanyById.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserById.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserByUserName.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserByUserNamePassword.sql" />
+    <Build Include="dbo\Stored Procedures\GetUsersByCompanyId.sql" />
+    <Build Include="dbo\Stored Procedures\SearchUsers.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCompany.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateUser.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProfessional.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalById.sql" />
+    <Build Include="dbo\Stored Procedures\AddProfessional.sql" />
+    <Build Include="dbo\Stored Procedures\AddInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\IsUsernameexists.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionals.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProfessionalSchedule.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleByProfessionalId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleById.sql" />
+    <Build Include="dbo\Stored Procedures\GetInsurances.sql" />
+    <Build Include="dbo\Stored Procedures\GetInsuranceById.sql" />
+    <Build Include="dbo\Stored Procedures\GetCompanies.sql" />
+    <Build Include="dbo\Stored Procedures\AddProfessionalSchedule.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomersByNameDOB.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomers.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerInsuranceByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerInsuranceByCustomerID.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerByID.sql" />
+    <Build Include="dbo\Stored Procedures\AddCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\AddCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\IsUserInRole.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserRolesByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoleByID.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\IsUserInRole.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserRolesByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoleByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleByDate.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalAppointments.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerAppointments.sql" />
+    <Build Include="dbo\Stored Procedures\AddAppointment.sql" />
+    <Build Include="Security\umais.sql" />
+    <Build Include="Security\umais_1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,69 @@
+﻿@model HBS.Data.Entities.TimeTracking.ViewModels.UserRoleViewModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+<div class="linkButtons" style="float: right;">
+    @Html.ActionLink("Back to List", "List", "User")    
+</div>
+
+<div>
+    
+    <div>
+        <h2 style="display: inline">Detail</h2><span>@Html.ActionLink("Edit", "Edit", new { id = Model.UserModel.UserName })</span>
+    </div>
+
+    <div id="divUserDetail">
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.GenerateSpan("lblNameLable", "Name", string.Empty)
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            @Html.GenerateSpan("lblName", Model.UserModel.FirstName + " " + Model.UserModel.LastName, string.Empty)
+        </div>
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.DisplayName("Email")
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            @Html.DisplayFor(model => model.UserModel.Email)
+        </div>
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.DisplayNameFor(model => model.UserModel.Title)
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            @Html.DisplayFor(model => model.UserModel.Title)
+        </div>
+        
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.DisplayNameFor(model => model.UserModel.Phone)
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            @Html.DisplayFor(model => model.UserModel.Phone)
+        </div>
+        <div class="clear-style">
+        </div>
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.DisplayNameFor(model => model.UserModel.HourlyRate)
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            @Html.DisplayFor(model => model.UserModel.HourlyRate)
+        </div>
+        <div class="clear-style">
+        </div>
+        <div class="display-label left-float-with-5-right-padding">
+            @Html.DisplayNameFor(model => model.UserModel.Address)
+        </div>
+        <div class="display-field left-float-with-5-right-padding">
+            <span>
+                @Model.UserModel.Address
+                <br />
+                @Model.UserModel.City , @Model.UserModel.State &nbsp; @Model.UserModel.Zip
+            </span>
+        </div>
+    </div>
+    <div class="clear-style"></div>
+    <div id="divUserWeeklyTimeTrack" >
+        @Html.Partial("_WeeklyTimeTrack", Model.WeeklyTimeTrackModel)
+    </div>
+</div>
+

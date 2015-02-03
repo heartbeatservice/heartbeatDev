@@ -1,0 +1,115 @@
+﻿@model List<HBS.Data.Entities.TimeTracking.Raven.MedicalUser>
+@Scripts.Render("~/bundles/timetrack")
+@{
+    if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+    <div id="messageDiv" style="color: Red; font-size: 16px; font-weight: bold;">
+        @ViewBag.Message
+    </div>
+    }
+}
+<div id="divBody">
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("td").addClass("nowraping");
+
+            $('span[name$="progressUserWithData"]').css("display","none");
+            $('span[name$="progressUser"]').css("display", "none");
+            $('span[name$="progressData"]').css("display", "none");
+            
+        });
+
+</script>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastlogin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phonenumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsUserMigrated)
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastlogin, new { @class = "nowraping" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phonenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsUserMigrated)
+                </td>
+                <td nowrap="nowrap">
+                    @{
+                        if (!item.IsUserMigrated && item.UserHasDataToMigrate)
+                        {
+                            @Ajax.ActionLink("Migrate User With Data", "MigrateUser", "DataMigrate", new { id = item.User, migrateData = "yes" }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "divBody",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "POST",
+                                    LoadingElementId = item.User + "_progressUserWithData"
+                                })
+                            <span id="@(item.User+"_progressUserWithData")" name="@(item.User+"_progressUserWithData")">
+                                <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+                            </span>
+                        }
+                        else if (!item.IsUserMigrated && !item.UserHasDataToMigrate)
+                        {
+                            @Ajax.ActionLink("Migrate User", "MigrateUser", "DataMigrate", new { id = item.User }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "divBody",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "POST",
+                                    LoadingElementId = item.User + "_progressUser"
+                                })
+                            <span id="@(item.User+"_progressUser")" name="@(item.User+"_progressUser")">
+                                <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+                            </span>
+                        }
+                        else if (item.IsUserMigrated && item.UserHasDataToMigrate)
+                        {
+                            @Ajax.ActionLink("Migrate Data", "MigrateData", "DataMigrate", new { id = item.User }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "divBody",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "POST",
+                                    LoadingElementId = item.User + "_progressUser"
+                                })
+                            <span id="@(item.User + "_progressData")" name="@(item.User+"_progressData")">
+                                <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+                            </span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

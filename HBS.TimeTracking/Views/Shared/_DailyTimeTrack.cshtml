@@ -1,0 +1,49 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.DailyTimeTrack
+
+@Scripts.Render("~/bundles/timetrack")
+
+@using (Ajax.BeginForm("Track", "TimeTrack", new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = "ttMainBodyDiv",
+                                LoadingElementId = "trackprogress"
+                            }))
+{
+    <h2>@Model.StampDate.ToShortDateString()</h2>
+    <span>Total Time Worked: <span style="font-weight: bold;">@Model.TotalTimeForTheDayDisplay</span></span>
+    <div style="padding:5px 0px;">
+        <input type="submit" value="@Model.SubmitButtonText"/>
+        <span id="trackprogress" style="display: none;">
+            <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+        </span>
+    </div>
+    
+    <table id="tblTimeTrack">
+        <tr>
+            <th>
+                @Html.DisplayName("Clock In")
+            </th>
+            <th>
+                @Html.DisplayName("Clock Out")
+            </th>
+            <th>
+                @Html.DisplayName("Total Time Each Cycle")
+            </th>
+        </tr>
+        @foreach (var item in Model.TimeTrackList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClockInTimeDisplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClockOutTimeDisplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalTimeDisplay)
+                </td>
+            </tr>
+        }
+    </table>
+}

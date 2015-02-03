@@ -1,0 +1,220 @@
+﻿@model HBS.Data.Entities.TimeTracking.ViewModels.CreateUserRoleViewModel
+@{
+    ViewBag.Title = "Create User";
+}
+<div class="linkButtons" style="float: right;">
+    @Html.ActionLink("Back to List", "List", "User")
+</div>
+
+<h2>
+    Create User</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>RegisterModel</legend>
+        <div id="createUserDiv" style="width: 840px;">
+            <div id="firstRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.FirstName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.FirstName)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.FirstName)
+                    </div>
+                </div>
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.LastName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.LastName)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.LastName)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="secondRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.UserName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.UserName)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.UserName)
+                    </div>
+                </div>
+                <div style="float: left;">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Email)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Email)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="thirdRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Password)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Password)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Password)
+                    </div>
+                </div>
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.ConfirmPassword)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.ConfirmPassword)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.ConfirmPassword)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="fourthRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Title)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Title)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Title)
+                    </div>
+                </div>
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Phone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Phone)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Phone)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="fifthRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Address)
+                    </div>
+                    <div id="addressdiv" class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Address)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Address)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="sixthRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.City)
+                    </div>
+                    <div id="cityDiv" class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.City)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.City)
+                    </div>
+                </div>
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.State)
+                    </div>
+                    <div id="stateDiv" class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.State)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.State)
+                    </div>
+                </div>
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.Zip)
+                    </div>
+                    <div id="zipDiv" class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.Zip)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.Zip)
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="seventRow">
+                <div class="left-float-with-5-right-padding">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserModel.HourlyRate)
+                    </div>
+                    <div id="hourlyRateDiv" class="editor-field">
+                        @Html.EditorFor(model => model.UserModel.HourlyRate)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserModel.HourlyRate)
+                    </div>
+                </div>
+            </div>
+            <div class="clear-style">
+            </div>
+            <div style="padding-top:10px;">
+                <div class="editor-label left-float-with-5-right-padding">
+                    @Html.LabelFor(model => model.Roles)
+                </div>
+                <div class="editor-field roleDiv">
+                    <table>
+                        @foreach (var role in Model.Roles)
+                        { 
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="Roles" value="@role" />
+                                    @role
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div style="clear: both">
+            </div>
+            <div class="right-float-with-5-right-padding">
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

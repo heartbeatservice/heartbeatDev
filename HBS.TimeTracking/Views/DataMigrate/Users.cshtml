@@ -1,0 +1,15 @@
+﻿@model List<HBS.Data.Entities.TimeTracking.Raven.MedicalUser>
+@{
+    ViewBag.Title = "Users";
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+}
+
+<h2>
+    Legacy Users</h2>
+@Html.Partial("_LegacyUserList",Model)
+

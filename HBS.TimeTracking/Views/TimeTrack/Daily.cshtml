@@ -1,0 +1,32 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.DailyTimeTrack
+
+
+@{
+    ViewBag.Title = "Track Time";
+}
+
+
+<div class="linkButtons" style="float: right;">
+    <span id="progress" style="display: none;">
+        <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+    </span>
+    @Ajax.ActionLink("Daily View", "DailyPartial", "TimeTrack", new { id = User.Identity.Name }, new AjaxOptions
+        {
+            UpdateTargetId = "ttMainBodyDiv",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "Get",
+            LoadingElementId = "progress"
+        })
+    @Ajax.ActionLink("Weekly View", "Weekly", "TimeTrack", new { id = User.Identity.Name }, new AjaxOptions
+        {
+            UpdateTargetId = "ttMainBodyDiv",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "Get",
+            LoadingElementId = "progress"
+        })
+</div>
+<div style="clear:both;"></div>
+
+<div id="ttMainBodyDiv" style="padding-left: 25px;">
+    @Html.Partial("_DailyTimeTrack", Model)
+</div>

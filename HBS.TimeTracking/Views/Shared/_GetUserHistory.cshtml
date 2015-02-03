@@ -1,0 +1,47 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.CustomTimeTrack
+
+@Scripts.Render("~/bundles/timetrack")
+
+<div style="float:left;">
+    <div style="font-size: 24px;font-weight:bold;">@Model.EmployeeName</div>
+    <div style="font-size: 18px;font-weight:bold;">@Model.CustomStartEndDateDisplay</div>
+    <div>Total time worked in this period: <span style="font-weight: bold;">@Model.TotalTimeWorkedForSelectedPeriodDisplay</span></div>
+
+    <div>Total payment due for this period: <span style="font-weight: bold;">$@Model.EmployeePayForThePeriodDisplay</span></div>
+@using (Html.BeginForm("ExportUserHistory", "Report", FormMethod.Post, new { name = "frmExportUserHistory", id = "frmExportUserHistory" }))
+{ 
+    <input type="hidden" name="uname" value="@Model.UserName" />
+    <input type="hidden" name="startDate" value="@Model.CustomStartDate" />
+    <input type="hidden" name="endDate" value="@Model.CustomEndDate" />
+    <input type="submit" value="Export To Excel" style="padding: 10px; display: inline" />
+}
+</div>
+
+<div style="clear:both;"></div>
+<br/>
+<table class="table">
+    <tr>
+        <th class="bold">
+            @Html.DisplayName("Date")
+        </th>
+        <th class="bold">
+            @Html.DisplayName("Total Time Worked")
+        </th>
+        <th class="bold">
+            @Html.DisplayName("Daily Payment")
+        </th>
+    </tr>
+    @foreach (var dailyTimeTrack in Model.DailyTimeTracks)
+    {<tr>
+        <td class="bold" style="padding-top: 10px;">
+            @Html.Raw(dailyTimeTrack.StampDateForDisplay)
+        </td>
+         <td class="bold" style="padding-top: 10px;">
+             @Html.DisplayFor(modelItem => dailyTimeTrack.TotalTimeForTheDayDisplay)
+         </td>
+         <td class="bold" style="padding-top: 10px;">
+            $@Html.DisplayFor(modelItem => dailyTimeTrack.EmployeePayForThePeriodDisplay)
+        </td>
+    </tr>
+    }
+</table>

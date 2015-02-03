@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Daily";
+}
+<div id="CalendarPageMain" ng-controller="CalendarController" ng-init="init()">
+   
+    <div class="row">
+
+        <div class="form-group col-md-6 has-warning">
+            <div class="input-group">
+
+                <h2>{{ProfessionalInfo.FirstName + " " + ProfessionalInfo.LastName }}</h2>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3 has-warning">
+       
+        </div>
+    </div>
+     <div class="row">
+        
+       
+        <div class="form-group  col-md-5 ">
+          
+                <select ng-model="professionalId" class="form-control" ng-options="doctor.ProfessionalId as doctor.FirstName+' '+doctor.LastName for doctor in ProfessionalList" ng-change="RefreshPage();"></select>
+         
+          
+        </div>
+    
+         
+    </div>
+    <div class="row" >
+
+
+        <div class="col-md-12">
+            <input id="CustomerId" type="hidden" value="@ViewBag.CustomerId" /><!--This will be optional and can come from the View if it is passed from another page-->
+            <input id="DoctorId" type="hidden" value="@ViewBag.ProfessionalId" /><!--This will always be required as the schedule dipsplayed will always be for a specific Doctor or Employee-->
+            <input id="CompanyId" type="hidden" value="@ViewBag.companyid" />
+            <input id="CurrentDate" type="hidden" value="@ViewBag.CurrentDate" />
+         
+
+
+            </div>
+
+
+
+            <style scoped>
+                .k-nav-current > .k-link span + span {
+                    max-width: 200px;
+                    display: inline-block;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    vertical-align: top;
+                }
+
+
+
+
+
+                .k-scheduler-dayview table tbody tr td {
+                    max-width: 34px !important;
+                    /* background-color:yellow !important; */
+                }
+
+                .k-scheduler-dayview table tbody tr:last-child {
+                    max-width: 1054px !important;
+                    /* background-color:yellow !important; */
+                }
+            </style>
+
+
+
+        
+
+    </div>
+    <div id="scheduler"></div>
+</div>
+
+@section scripts{
+<script src="~/Scripts/kendo.all.min.js"></script>
+<script src="~/Content/Angular/CalendarController.js"></script>
+}

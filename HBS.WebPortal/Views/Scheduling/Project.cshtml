@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Project";
+}
+
+
+<div id="Board" class="container" ng-controller="BoardController">
+    <div id="indexCard" class="hideInput"> <h4 id="createTask" class="LaneLabels">Create Task</h4><hr /><textarea id="indextext" cols="30" rows="3" placeholder="Type info here and then click button below to make it draggable"></textarea><br /><input type="button" id="taskbtn" value="Create Index Card" /></div>
+    <a href="#" id="newTask">Add new Task!</a>
+
+
+    <div id="row">
+        <div class="col-md-4" ng-repeat="lane in lanes" id="BoardLane{{lane.position}}">
+            <h1>{{lane.name}}</h1>
+            <div class="DragBox">
+                <ol class="dropbox" id="test">
+                    <li ng-repeat="card in lane.cards" class="BoardDrop" id="toDropDefault{{card.position}}">{{card.cardText}}</li>
+                </ol>
+
+            </div>
+            
+        </div>
+
+
+    </div>
+    <div>{{lanesData}}</div>
+</div>
+<script src="~/Scripts/Board.js"></script>
+<script src="~/content/Angular/boardController.js"></script>

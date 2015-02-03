@@ -1,0 +1,47 @@
+﻿@model HBS.Data.Entities.TimeTracking.Models.UserList
+@Scripts.Render("~/bundles/timetrack")
+@{
+    ViewBag.Title = "Edit User's Clock In/Out Time";
+}
+@*<div style="font-weight: bold; font-size: 20px; color: #000; float: left">
+    Edit User Clock In/Out Time</div>*@
+<div style="float: right;">
+    @Html.ActionLink("Create New Record", "Create", "TimeTrack")
+</div>
+<div style="margin-top: 10px; clear: both;">
+    @using (Ajax.BeginForm("GetTimeTrackForEdit", "TimeTrack", new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "searchResult",
+            LoadingElementId = "searchprogress"
+        }))
+    {
+        <div class="bigInputControls">
+            @*<div style="float: left; text-align: center; padding-right: 5px;">
+            <label for="user" style="display: block; font-weight: bold;">
+                User</label>
+            <input type="text" name="user" style="height:25px;" data-autocomplete="@Url.Action("UserQuickSearch", "Report")"/>
+        </div>*@
+            <div id="divUserList" style="float: left; text-align: center; padding-right: 5px;">
+                <label for="user" style="display: block; ">
+                    User</label>
+                @Html.DropDownListFor(x => x.SelectedValue, Model.Users, new { id = "userList", @class = "userList" })
+            </div>
+            <div style="float: left; text-align: center; padding-right: 5px;">
+                <label for="txtStartDate" style="display: block; ">
+                    Date</label>
+                <input type="text" style="height: 25px;" data-datepicker="true" name="txtStartDate" />
+            </div>
+            <div style="float: left; padding-top: 15px; padding-right: 5px;">
+                <input type="submit" value="Search" style="padding: 10px; display: inline" />
+            </div>
+            <div id="searchprogress" style="display: none; padding-right: 5px;">
+                <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+            </div>
+        </div>
+
+    }
+</div>
+<div id="searchResult" style="clear: both;">
+</div>

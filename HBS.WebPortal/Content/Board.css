@@ -1,0 +1,143 @@
+﻿
+
+
+
+#mainHeading{
+              color:blue;
+             text-shadow:1px 1px 1px yellow;
+}
+
+#BoardLane0{
+    border-left:2px solid black;
+   
+}
+.LaneLabels{
+    
+   
+   text-shadow:1px 1px 1px red;
+    padding-left:40px;
+}
+
+#ToDo{color:red;}
+#InProgress{color:orange;}
+#Complete{color:green;}
+#createTask{
+    padding-left:0px;
+    color:white;
+    text-shadow:1px 1px 1px red;
+}
+
+
+.card{
+      background-image:url('../images/close_icon.gif');
+      background-repeat:no-repeat;
+      background-position:top right;
+background-color:blue;
+width:250px;
+height:40px;
+overflow:hidden;
+border: 2px black solid ;
+font-size:14px;
+letter-spacing:2px;
+text-shadow:0.1em -0.1em .20em red;
+color:black;
+box-shadow:white 2px -2px 2px;
+
+}
+
+
+.card:hover{
+    cursor:move;
+}
+.DragBox{
+
+    width:260px;
+    height:150px;
+   
+}
+ol { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px;background: orange; width:235px ;padding:10px; }
+ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+li{
+    margin-bottom:5px;
+}
+
+#indexCard{
+    
+    position:fixed;
+    left:100px;
+    top:120px;
+    padding:20px;
+    
+    border:2px solid lightyellow;
+    background-color:purple;
+     color:white;
+     z-index:2;
+}
+
+.hideInput{
+    display:none;
+}
+
+.showInput{
+
+    display:block;
+}
+#indexCard:hover{
+    cursor:move;
+}
+
+hr{
+    border:2px solid white;
+}
+
+
+#mainCard{
+
+    display:none;
+}
+
+.BoardDrop
+{
+      
+     
+background-color:white;
+
+width:230px;
+height:40px;
+overflow:hidden;
+border: 2px black solid ;
+font-size:14px;
+letter-spacing:2px;
+
+color:black;
+box-shadow:purple 2px -2px 2px;
+
+}
+.BoardDrop:hover{
+    cursor:move;
+}
+
+#indextext{
+
+border:2px solid blue;
+}
+
+
+
+.inline{
+
+    border:2px solid black;
+    background-color:yellow;
+    color:blue;
+    display:inline;
+   padding:5px;
+}
+
+.inline:hover{
+    background-color:black;
+    color:yellow;
+
+    cursor:pointer;
+    font-size:18px;
+    border:2px solid yellow;
+}

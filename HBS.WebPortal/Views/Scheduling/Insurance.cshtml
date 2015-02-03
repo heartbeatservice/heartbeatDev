@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Insurance";
+}
+
+<div ng-controller="InsuranceController">
+
+
+    <div id="dashboard">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading panelBg ">Insurance Panel</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <a href="#frmAdd" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span>Add New Insurance</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <div class="form-group has-warning">
+                            <input class="form-control " ng-model="SearchParam" placeholder="Insurance Name, Company ID or Insurance ID" />
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                            <button class="btn btn-warning" ng-click="InsuranceSearch();"><span class="glyphicon glyphicon-search "></span></button>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 gridStyle" id="InsuranceGrid" ng-grid="GridOptions"></div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*add insurance*@
+
+
+    <div class="modal fade " tabindex="-1" id="frmAdd">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Add Insurance</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="user" ng-model="Insurance.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Insurance.CompanyId" value="@ViewBag.companyid" />
+                                <input id="InsuranceName" type="text" value="" ng-model="Insurance.InsuranceName" class="form-control" placeholder="Insurance  Name" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsurancePhone" type="text" value="" ng-model="Insurance.InsurancePhone" class="form-control" placeholder="Phone" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsuranceAddress" type="text" value="" ng-model="Insurance.InsuranceAddress" class="form-control" placeholder="Insurance Address" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsuranceWebsite" type="text" value="" ng-model="Insurance.InsuranceWebsite"  class="form-control" placeholder="Insurance Website" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="AddInsurance();"><span class="glyphicon glyphicon-user"></span>Save</button>
+                        <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-warning" type="button" value="Clear" ng-click="clearInsurance();" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+      </div>
