@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Data", "HBS.Data\HBS.Data.csproj", "{E94C3E8A-615F-4DEB-9EBA-6269E48BFA69}"
 EndProject
@@ -46,7 +46,6 @@ Global
 		{2A305813-B643-4A04-A045-E6C87EBFFAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A305813-B643-4A04-A045-E6C87EBFFAAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF15EE99-40AD-4769-B255-0BF592565C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF15EE99-40AD-4769-B255-0BF592565C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF15EE99-40AD-4769-B255-0BF592565C12}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
 		{DF15EE99-40AD-4769-B255-0BF592565C12}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{DF15EE99-40AD-4769-B255-0BF592565C12}.QA|Any CPU.ActiveCfg = QA|Any CPU
