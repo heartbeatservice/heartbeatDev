@@ -137,5 +137,25 @@ namespace HBS.WebPortal.Controllers
 
             return View();
         }
+
+        public ActionResult Workflow()
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+
+            return View();
+        }
+
+        public ActionResult WorkflowAdmin()
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+
+            return View();
+        }
     }
 }

@@ -188,6 +188,10 @@
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\WorkflowCategoryController.cs" />
+    <Compile Include="Controllers\WorkflowController.cs" />
+    <Compile Include="Controllers\WorkflowHistoryController.cs" />
+    <Compile Include="Controllers\WorkflowStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

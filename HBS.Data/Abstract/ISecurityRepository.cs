@@ -20,6 +20,7 @@ namespace HBS.Data.Abstract
         bool RemoveUserFromRole(int roleId, int userId);
         List<Role> GetUserRoles(int userId);
         bool IsUserInRole(int userId, int roleId);
+        IQueryable<KendoDDL> GetAllUsers();
 
         #region ROLES
 

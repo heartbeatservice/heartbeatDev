@@ -29,5 +29,10 @@ namespace HBS.WebApi.Controllers
         {
             return securityEntity.GetUser(securityEntity.AddUser(user));
         }
+
+        public IEnumerable<KendoDDL> Get(HttpRequestMessage requestMessage)
+        {
+            return securityEntity.GetAllUsers().ToList();
+        }
     }
 }

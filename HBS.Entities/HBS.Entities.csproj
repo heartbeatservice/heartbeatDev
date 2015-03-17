@@ -55,6 +55,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="EmailMessage.cs" />
     <Compile Include="Insurance.cs" />
+    <Compile Include="KendoDDL.cs" />
     <Compile Include="KendoEntity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuRole.cs" />
@@ -67,6 +68,10 @@
     <Compile Include="UserProfile.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Workflow.cs" />
+    <Compile Include="WorkflowCategory.cs" />
+    <Compile Include="WorkflowHistory.cs" />
+    <Compile Include="WorkflowNotification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

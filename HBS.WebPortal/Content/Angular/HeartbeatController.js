@@ -45,7 +45,7 @@
         
         var app = document.getElementById('app').value;
         if (app === 'Scheduling')
-            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project' }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }]
+            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project' }, { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow' }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
         var mainMenu = document.getElementById('menu');
         var menuItem;
         var submenu;

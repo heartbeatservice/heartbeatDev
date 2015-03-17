@@ -341,5 +341,30 @@ namespace HBS.Data.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public IQueryable<KendoDDL> GetAllUsers()
+        {
+            IList<KendoDDL> userList = new List<KendoDDL>();
+
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = @"SELECT UserId, UserName FROM dbo.UserProfile";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            userList.Add(new KendoDDL(reader, "User"));
+                        }
+                    }
+                }
+            }
+
+            return userList.AsQueryable();
+        }
     }
 }
