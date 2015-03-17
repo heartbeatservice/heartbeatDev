@@ -26,15 +26,19 @@ namespace HBS.WebApi.Controllers
 
         public HttpResponseMessage Post(WorkflowCategory workflowCategory)
         {
-            if (_repository.AddWorkflowCategory(workflowCategory))
+            int workflowCategoryID = _repository.AddWorkflowCategory(workflowCategory);
+
+            if (workflowCategoryID > 0)
             {
+                workflowCategory.WorkflowCategoryID = workflowCategoryID;
+
                 DataSourceResult result = new DataSourceResult
                 {
                     Data = new[] { workflowCategory },
                     Total = 1
                 };
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, result);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = workflowCategory.WorkflowCategoryID }));
                 return response;
             }

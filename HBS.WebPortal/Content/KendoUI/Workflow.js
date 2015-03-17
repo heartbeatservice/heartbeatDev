@@ -140,28 +140,45 @@
         });
     }
 
+    // check for change event
     /*
+    $('#grid').data().kendoGrid.dataSource.bind('change', function (e) {
+        console.log(e.action);
+
+        var workflowHistory = {};
+        workflowHistory.WorkflowHistoryID = 1;
+        workflowHistory.WorkflowID = 1;
+        workflowHistory.Payload = "{'OwnerID':1}";
+        workflowHistory.DateCreated = new Date().toString("yyyy-MM-dd");
+
+        //var test = logWorkflowHistory(crudServiceBaseUrl + "/WorkflowHistory", workflowHistory);
+    })
+    */
+
+    /**************************************************************************
+    * Workflow Admin Section
+    ***************************************************************************/
     var dataSource = new kendo.data.DataSource({
         transport: {
             read: {
-                url: crudServiceBaseUrl + "/Workflow",
+                url: crudServiceBaseUrl + "/WorkflowCategory",
                 contentType: "application/json",
                 dataType: "json"
             },
             update: {
-                url: crudServiceBaseUrl + "/Workflow",
+                url: crudServiceBaseUrl + "/WorkflowCategory",
                 contentType: "application/json",
                 dataType: "json",
                 type: "PUT"
             },
             destroy: {
-                url: crudServiceBaseUrl + "/Workflow",
+                url: crudServiceBaseUrl + "/WorkflowCategory",
                 contentType: "application/json",
                 dataType: "json",
                 type: "DELETE"
             },
             create: {
-                url: crudServiceBaseUrl + "/Workflow",
+                url: crudServiceBaseUrl + "/WorkflowCategory",
                 contentType: "application/json",
                 dataType: "json",
                 type: "POST"
@@ -173,37 +190,22 @@
                 return JSON.stringify(options);
             }
         },
-        serverPaging: true,
-        serverSorting: true,
-        serverFiltering: true,
-        pageSize: 10,
-        filter: { field: "CategoryID", operator: "eq", value: e.data.id },
-        batch: true,
         pageSize: 20,
+        batch: true,
         schema: {
             data: "Data",
             total: "Total",
             model: {
-                id: "WorkflowID",
+                id: "WorkflowCategoryID",
                 fields: {
-                    WorkflowID: { editable: false, nullable: true },
-                    CategoryID: { field: "Category", type: "number", editable: false },
-                    OwnerID: { field: "OwnerID", type: "number", editable: true },
-                    WorkerID: { field: "WorkerID", type: "number", editable: true },
-                    WorkflowTitle: { type: "string", editable: true },
-                    WorkflowNote: { type: "string", editable: true },
-                    DueDate: { type: "date", editable: true },
-                    StatusID: { field: "StatusID", type: "number", editable: true },
-                    DateCreated: { type: "date", editable: false },
-                    DateUpdated: { type: "date", editable: false }
+                    WorkflowCategoryID: { editable: false, nullable: true },
+                    CategoryName: { field: "CategoryName", type: "string", editable: true }
                 }
             }
         }
     });
-    */
 
-    /*
-    $("#grid").kendoGrid({
+    $("#workflowAdminGrid").kendoGrid({
         dataSource: dataSource,
         filterable: {
             extra: false,
@@ -220,30 +222,11 @@
         height: 550,
         toolbar: ["create"],
         columns: [
-            { field: "WorkflowTitle", title: "Workflow Title" },
-            { field: "OwnerID", values: users, title: "Owner", width: "100px" },
-            { field: "WorkerID", values: users, title: "Worker", width: "100px" },
-            { field: "WorkflowNote", title: "Note" },
-            { field: "DueDate", title: "Due Date", format: "{0:MM/dd/yyyy}", width: "120px" },
-            { field: "StatusID", values: status, title: "Status", width: "140px" },
+            { field: "CategoryName", title: "Category Name" },
             { command: ["edit", "destroy"], title: "&nbsp;", width: "200px" }],
         editable: "popup",
         sortable: true
     });
-    */
-
-    // check for change event
-    $('#grid').data().kendoGrid.dataSource.bind('change', function (e) {
-        console.log(e.action);
-
-        var workflowHistory = {};
-        workflowHistory.WorkflowHistoryID = 1;
-        workflowHistory.WorkflowID = 1;
-        workflowHistory.Payload = "{'OwnerID':1}";
-        workflowHistory.DateCreated = new Date().toString("yyyy-MM-dd");
-
-        //var test = logWorkflowHistory(crudServiceBaseUrl + "/WorkflowHistory", workflowHistory);
-    })
 });
 
 // ajax function to get list of users from the server for drop down list

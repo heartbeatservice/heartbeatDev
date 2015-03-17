@@ -43,7 +43,7 @@ namespace HBS.Data.Concrete
             return categoryList.AsQueryable();
         }
 
-        public bool AddWorkflowCategory(WorkflowCategory toInsert)
+        public int AddWorkflowCategory(WorkflowCategory toInsert)
         {
             int rowAffected = 0;
 
@@ -61,7 +61,7 @@ namespace HBS.Data.Concrete
                 connection.Dispose();
             }
 
-            return false;
+            return rowAffected;
         }
 
         public bool EditWorkflowCategory(WorkflowCategory toUpdate)
@@ -83,7 +83,7 @@ namespace HBS.Data.Concrete
                 connection.Dispose();
             }
 
-            return false;
+            return rowAffected == 1 ? true : false;
         }
 
         public bool DeleteWorkflowCategory(int id)

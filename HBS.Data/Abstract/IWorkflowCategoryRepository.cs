@@ -9,7 +9,7 @@ namespace HBS.Data.Abstract
     public interface IWorkflowCategoryRepository
     {
         IQueryable<WorkflowCategory> GetWorkflowCategory();
-        bool AddWorkflowCategory(WorkflowCategory toInsert);
+        int AddWorkflowCategory(WorkflowCategory toInsert);
         bool EditWorkflowCategory(WorkflowCategory toUpdate);
         bool DeleteWorkflowCategory(int id);
     }
